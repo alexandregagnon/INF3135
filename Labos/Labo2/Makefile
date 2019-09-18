@@ -1,5 +1,5 @@
-hello: clean hello.o
-	gcc -o hello hello.o
+all: clean hello.o
+	gcc -o hello hello.o -lm
 
 clean:
 	rm -f hello.o
