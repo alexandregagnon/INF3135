@@ -1,4 +1,4 @@
-
+#include <string.h>
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
@@ -61,12 +61,54 @@ bool estTrie(int tabSize,int tab[])
 	return true;
 }
 
+void elementPlusFrequent(int tabSize,int tab[])
+{
+	int elementPlusRep;
+	int nombreDeFois = 0;
+
+	for(int i = 0; i < tabSize; i++)
+	{
+		int element = tab[i];
+		int nbFoisElement = 0;
+		for(int j = 0; j < tabSize; j++)
+		{
+			if(element == tab[j])
+			{
+				nbFoisElement++;
+			}
+
+		}
+		if(nbFoisElement > nombreDeFois)
+		{
+			nombreDeFois = nbFoisElement;
+			elementPlusRep = element;
+		}
+	}
+
+	printf("L'element qui se repete le plus est : %d \n",elementPlusRep);
+}
+
+void nombreFoisChar(char caract, char mot[])
+{
+	int nbFoisCaract = 0;
+	for(int i =0; i < strlen(mot); i++)
+	{
+		if(caract == mot[i])
+		{
+			nbFoisCaract++;
+		}
+	}
+
+	printf("Le charactere : %c est present %d fois dans le mot !\n", caract, nbFoisCaract);
+	
+}
+
 int main(int argc,char *argv[]) {
 	boucleAvant(4);
 	boucleApres(4);
 	racineCarreEntiere(9);
 	lignecommande(argc,argv);
-	int  num[] = {1,2,3,4};
+	int  num[] = {1,2,3,4,4,3,4};
 	int sizeOfArray =  sizeof(num)/sizeof(num[0]);
 	somme(sizeOfArray, num);
 	bool trier = estTrie(sizeOfArray, num);
@@ -74,7 +116,10 @@ int main(int argc,char *argv[]) {
 		printf("Le tableau est trier ! \n");
 	else
 		printf("Le tableau n'est pas trier !\n");
-	return 0;
 
+	elementPlusFrequent(sizeOfArray, num);
+	char motTest[] = "ceci est un test !";
+	nombreFoisChar('c', motTest);
+	return 0;
 }
 
